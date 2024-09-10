@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class BirdController : MonoBehaviour
 {
-    private Rigidbody rb;
+     Rigidbody rb;
     [SerializeField] private float jumpForce;
     [SerializeField] private float timeCount;
     private bool isJump = false;
+    [SerializeField] Animator animator;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+
     }
 
     private void Update()
@@ -24,7 +26,9 @@ public class BirdController : MonoBehaviour
 
     private void Jump()
     {
+       // animator.SetTrigger("ToDefault");
         rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
+        animator.SetTrigger("Jump");
     }
 
 }
