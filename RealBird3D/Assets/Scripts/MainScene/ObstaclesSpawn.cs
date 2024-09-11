@@ -1,25 +1,62 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ObstaclesSpawn : MonoBehaviour
 {
     [SerializeField] GameObject[] obstacles;
-    [SerializeField] Transform bird;
+    [SerializeField] Transform end;
     [SerializeField] float distance;
+    [SerializeField] Transform spawn;
+    [SerializeField] List<GameObject> pull;
+
+    private void Start()
+    {
+        pull = new();
+    }
 
     private void Update()
     {
-        SpawnObstacles();
+        CheckOnExit();
+        if (isFarFromSpawn() && pull.Count>=5) SpawnRandom();
+
     }
 
-    private void SpawnObstacles()
+
+    private void CheckOnExit()
     {
         foreach (var obstacle in obstacles)
         {
-            if (obstacle.transform.position.x-bird.position.x<=distance)
+            if (obstacle.transform.position.x<= end.position.x)
             {
-                obstacle.transform.position = new Vector3(distance, obstacle.transform.position.y, obstacle.transform.position.z);
+                if(!pull.Contains(obstacle))
+                pull.Add(obstacle);
             }
 
         }
+    }
+
+    
+
+    private void SpawnRandom()
+    {
+        int r = Random.Range(0,pull.Count);
+        pull[r].transform.position = spawn.position;
+        ObstacleHeightChange obstacleHeight = pull[r].GetComponent<ObstacleHeightChange>();
+        obstacleHeight.isMovementStart = true;
+        pull.RemoveAt(r);
+    }
+
+    private bool isFarFromSpawn()
+    {
+        foreach (var obstacle in obstacles)
+        {
+            if (Mathf.Abs(obstacle.transform.position.x - spawn.position.x)<=distance)
+            {
+                return false;
+            }
+
+        }
+        return true;
     }
 }
