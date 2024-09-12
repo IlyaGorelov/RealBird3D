@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ObstacleHeightChange : MonoBehaviour
+public class ObstacleMovement : MonoBehaviour
 {
     public bool isMovementStart = false;
     public bool canMove = true;
@@ -11,7 +11,7 @@ public class ObstacleHeightChange : MonoBehaviour
 
     private void Update()
     {
-        if (isMovementStart)
+        if (isMovementStart && !GameStates.isGameEnd)
         {
             isMovementStart = false;
             float height = Random.Range(minHeight, maxHeight);
@@ -22,7 +22,7 @@ public class ObstacleHeightChange : MonoBehaviour
 
     private void Move()
     {
-        if (IsOtherNotThere())
+        if (IsOtherNotThere() && !GameStates.isGameEnd)
             transform.position -= new Vector3(speed, 0, 0);
     }
 

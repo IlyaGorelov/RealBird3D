@@ -18,7 +18,7 @@ public class ObstaclesSpawn : MonoBehaviour
     private void Update()
     {
         CheckOnExit();
-        if (isFarFromSpawn() && pull.Count>=5) SpawnRandom();
+        if (isFarFromSpawn() && pull.Count>=5 && !GameStates.isGameEnd) SpawnRandom();
 
     }
 
@@ -42,7 +42,7 @@ public class ObstaclesSpawn : MonoBehaviour
     {
         int r = Random.Range(0,pull.Count);
         pull[r].transform.position = spawn.position;
-        ObstacleHeightChange obstacleHeight = pull[r].GetComponent<ObstacleHeightChange>();
+        ObstacleMovement obstacleHeight = pull[r].GetComponent<ObstacleMovement>();
         obstacleHeight.isMovementStart = true;
         pull.RemoveAt(r);
     }
