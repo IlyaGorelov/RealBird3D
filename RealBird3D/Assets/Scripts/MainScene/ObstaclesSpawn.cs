@@ -41,7 +41,7 @@ public class ObstaclesSpawn : MonoBehaviour
     private void SpawnRandom()
     {
         int r = Random.Range(0,pull.Count);
-        pull[r].transform.position = spawn.position;
+        pull[r].transform.position = new Vector3(spawn.position.x, spawn.position.y, pull[r].transform.position.z);
         ObstacleMovement obstacleHeight = pull[r].GetComponent<ObstacleMovement>();
         obstacleHeight.isMovementStart = true;
         pull.RemoveAt(r);
