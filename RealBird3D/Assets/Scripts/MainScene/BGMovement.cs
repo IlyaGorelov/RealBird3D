@@ -11,6 +11,6 @@ public class BGMovement : MonoBehaviour
 
     private void Move()
     {
-        transform.position -= new Vector3(speed, 0, 0);
+        transform.Translate(-speed-GameStates.speedA, 0, 0);
     }
 }
