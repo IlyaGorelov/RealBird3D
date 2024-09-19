@@ -3,7 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class EndGameAfterCollision : MonoBehaviour
 {
-    [SerializeField] GameObject EndScreen;
+    [SerializeField] FreezeTime freezeTime;
+    public static bool isLose;
+
+    private void Start()
+    {
+        freezeTime = new();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -11,7 +17,9 @@ public class EndGameAfterCollision : MonoBehaviour
         {
             try
             {
-                EndScreen.SetActive(true);
+                GameStates.score = 0;
+                GameStates.speedA = 0;
+                isLose = true;
                 StopGame();
             }
             catch
@@ -23,6 +31,8 @@ public class EndGameAfterCollision : MonoBehaviour
 
     private void StopGame()
     {
-        GameStates.isGameEnd = true;
+        GameStates.isGamePaused = true;
+        freezeTime.Freeze();
     }
+
 }

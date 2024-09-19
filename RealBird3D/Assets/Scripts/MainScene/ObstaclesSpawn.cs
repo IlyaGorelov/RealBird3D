@@ -9,6 +9,7 @@ public class ObstaclesSpawn : MonoBehaviour
     [SerializeField] float distance;
     [SerializeField] Transform spawn;
     [SerializeField] List<GameObject> pull;
+    int pastScore = 0;
 
     private void Start()
     {
@@ -18,8 +19,8 @@ public class ObstaclesSpawn : MonoBehaviour
     private void Update()
     {
         CheckOnExit();
-        if (isFarFromSpawn() && pull.Count>=5 && !GameStates.isGameEnd) SpawnRandom();
-
+        if (isFarFromSpawn() && pull.Count>=5 && !GameStates.isGamePaused) SpawnRandom();
+        PLusDistance();
     }
 
 
@@ -58,5 +59,15 @@ public class ObstaclesSpawn : MonoBehaviour
 
         }
         return true;
+    }
+
+    private void PLusDistance()
+    {
+        if (GameStates.score - pastScore >= 20)
+        {
+            distance += 5;
+            pastScore = GameStates.score;
+        }
+
     }
 }

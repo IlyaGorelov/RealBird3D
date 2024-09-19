@@ -6,7 +6,7 @@ public class BGMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!GameStates.isGameEnd) Move();
+        if (!GameStates.isGamePaused) Move();
     }
 
     private void Move()
