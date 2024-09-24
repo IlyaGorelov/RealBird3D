@@ -1,13 +1,21 @@
 using UnityEngine;
+using YG;
 
 public class OpenCloseSettings : MonoBehaviour
 {
     [SerializeField] GameObject settings;
     [SerializeField] FreezeTime freezeTime;
 
-    private void Start()
+    private void OnEnable()
     {
         freezeTime = new();
+        YandexGame.onVisibilityWindowGame += Open;
+    }
+
+    private void OnDisable()
+    {
+        freezeTime = new();
+        YandexGame.onVisibilityWindowGame -= Open;
     }
 
     private void Update()
@@ -34,5 +42,15 @@ public class OpenCloseSettings : MonoBehaviour
     {
         GameStates.isGamePaused = false;
         freezeTime.Continue();
+    }
+
+    private void Open(bool isActive)
+    {
+        if(!isActive)
+        {
+            settings.SetActive(true);
+            GameStates.isGamePaused = true;
+            freezeTime.Freeze();
+        }
     }
 }
