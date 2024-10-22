@@ -19,6 +19,9 @@ namespace YG
         // Ваши сохранения
 
         public int record;
+        public float mainSoundLevel;
+        public float BGSoundLevel;
+        public float NoiseSoundLevel;
 
         // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны
 

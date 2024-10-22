@@ -8,6 +8,7 @@ public class BirdController : MonoBehaviour
     [SerializeField] private float timeCount;
     private bool isJump = false;
     [SerializeField] Animator animator;
+    [SerializeField] AudioSource audioSource;
 
     private void Start()
     {
@@ -26,7 +27,7 @@ public class BirdController : MonoBehaviour
 
     private void Jump()
     {
-       // animator.SetTrigger("ToDefault");
+        audioSource.Play();
         rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
         animator.SetTrigger("Jump");
     }
