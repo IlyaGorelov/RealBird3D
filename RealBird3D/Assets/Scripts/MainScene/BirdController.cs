@@ -9,6 +9,7 @@ public class BirdController : MonoBehaviour
     private bool isJump = false;
     [SerializeField] Animator animator;
     [SerializeField] AudioSource audioSource;
+    [SerializeField] ParticleSystem particle;
 
     private void Start()
     {
@@ -27,9 +28,15 @@ public class BirdController : MonoBehaviour
 
     private void Jump()
     {
+        try { 
         audioSource.Play();
+        }
+        catch { }
+        particle.Play();
         rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
         animator.SetTrigger("Jump");
     }
+
+
 
 }
