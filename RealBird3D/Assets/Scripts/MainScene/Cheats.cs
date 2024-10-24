@@ -13,6 +13,7 @@ public class Cheats : MonoBehaviour
     {
         Invincible();
         PlusScore();
+        PlusCash();
     }
 
     private void Invincible()
@@ -29,5 +30,17 @@ public class Cheats : MonoBehaviour
             Input.GetKey(KeyCode.Y) &&
             Input.GetKey(KeyCode.D) && Input.GetKeyDown(KeyCode.A))
             GameStates.score+=3;
+    }
+
+    private void PlusCash()
+    {
+        if (Input.GetKey(KeyCode.J) && Input.GetKey(KeyCode.O) &&
+            Input.GetKey(KeyCode.P) &&
+            Input.GetKey(KeyCode.A))
+        {
+            GameStates.cash += 3;
+            print("plus");
+        }
+
     }
 }

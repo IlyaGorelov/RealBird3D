@@ -1,5 +1,5 @@
 {
-    "idSave": 2172,
+    "idSave": 10456,
     "isFirstSession": false,
     "language": "ru",
     "promptDone": false,
@@ -11,7 +11,13 @@
         false
     ],
     "record": 16,
-    "mainSoundLevel": 0.0,
+    "mainSoundLevel": -13.136455535888672,
     "BGSoundLevel": 0.0,
-    "NoiseSoundLevel": 0.0
+    "NoiseSoundLevel": 0.0,
+    "cash": 14,
+    "airId": "air-1-0",
+    "fireId": "",
+    "confettiId": "",
+    "lightningId": "",
+    "blowId": ""
 }

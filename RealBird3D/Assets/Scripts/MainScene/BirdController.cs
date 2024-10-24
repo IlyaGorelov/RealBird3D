@@ -10,6 +10,8 @@ public class BirdController : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] AudioSource audioSource;
     [SerializeField] ParticleSystem particle;
+    public ParticleSystem coinEffect;
+    public AudioSource coinSound;
 
     private void Start()
     {

@@ -53,10 +53,10 @@ public class ObstaclesSpawn : MonoBehaviour
     {
         for (int i = 0; i <= countOfBuilds; i++)
         {
-            print("spawned");
             int r = Random.Range(0, obstacles.Length);
             obstacles[r].transform.position = new Vector3(distanceForStartedBuildings + spawn.position.x - i*(spawn.position.x - Bird.position.x) / countOfBuilds, spawn.position.y, obstacles[r].transform.position.z);
             ObstacleMovement obstacleHeight = obstacles[r].GetComponent<ObstacleMovement>();
+
             obstacleHeight.isMovementStart = true;
         }
     }

@@ -1,4 +1,7 @@
+using YG;
 using UnityEngine;
+using System;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Coin : MonoBehaviour
 {
@@ -12,12 +15,30 @@ public class Coin : MonoBehaviour
     private void Move()
     {
         if (!GameStates.isGamePaused)
-            transform.Translate(-speed - GameStates.speedA, 0, 0);
+        {
+            transform.Translate(-speed- GameStates.speedA, 0, 0);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        GameStates.cash += 1;
-        Destroy(gameObject);
+        if (collision.gameObject.TryGetComponent(out BirdController a))
+        {
+            GameStates.cash += 1;
+            SaveCash();
+            a.coinEffect.Play();
+            a.coinSound.Play();
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void SaveCash()
+    {
+        YandexGame.savesData.cash = GameStates.cash;
+        YandexGame.SaveProgress();
     }
 }

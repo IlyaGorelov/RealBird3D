@@ -22,6 +22,13 @@ namespace YG
         public float mainSoundLevel;
         public float BGSoundLevel;
         public float NoiseSoundLevel;
+        public int cash;
+
+        public string airId;
+        public string fireId;
+        public string confettiId;
+        public string lightningId;
+        public string blowId;
 
         // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны
 

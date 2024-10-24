@@ -532,10 +532,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1838192765579775030}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 6395753652957240008}
+        m_TargetAssemblyTypeName: EffectItem, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1012,7 +1012,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8734857203862393830}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: EffectItem, Assembly-CSharp
         m_MethodName: Choose
         m_Mode: 1
@@ -1035,7 +1035,7 @@ GameObject:
   - component: {fileID: 8864221523184680874}
   - component: {fileID: 625172154402603920}
   - component: {fileID: 4731394645236341740}
-  - component: {fileID: 8734857203862393830}
+  - component: {fileID: 6395753652957240008}
   m_Layer: 5
   m_Name: Item
   m_TagString: Untagged
@@ -1106,7 +1106,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8734857203862393830
+--- !u!114 &6395753652957240008
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1124,6 +1124,7 @@ MonoBehaviour:
   BuyButton: {fileID: 1838192765579775030}
   BuyedImage: {fileID: 8655001229053596236}
   chosenImage: {fileID: 5975656448929939519}
+  chooseButton: {fileID: 5349384225882999022}
 --- !u!1 &5972022214398409939
 GameObject:
   m_ObjectHideFlags: 0

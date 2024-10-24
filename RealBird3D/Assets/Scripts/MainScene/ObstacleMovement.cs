@@ -9,6 +9,12 @@ public class ObstacleMovement : MonoBehaviour
     [SerializeField] float distanceBtwBuilds = 30;
     [SerializeField] float speed = 0.01f;
     [SerializeField] bool NotRightDir = false;
+    [SerializeField] SpawnCoinFrontOfObstacle spawnCoin;
+
+    private void Start()
+    {
+        spawnCoin=GetComponent<SpawnCoinFrontOfObstacle>();
+    }
 
     private void Update()
     {
@@ -17,6 +23,7 @@ public class ObstacleMovement : MonoBehaviour
             isMovementStart = false;
             float height = Random.Range(minHeight, maxHeight);
             transform.localPosition = new Vector3(transform.localPosition.x, height, transform.localPosition.z);
+            spawnCoin.Spawn();
         }
         if (!GameStates.isGamePaused)
         {
@@ -29,13 +36,19 @@ public class ObstacleMovement : MonoBehaviour
     private void Move()
     {
         if (IsOtherNotThere() && !GameStates.isGamePaused)
+        {
+            
             transform.Translate(-speed - GameStates.speedA, 0, 0);
+        }
     }
 
     private void MoveFix()
     {
         if (IsOtherNotThere() && !GameStates.isGamePaused)
+        {
+        
             transform.Translate(0, 0, -speed - GameStates.speedA);
+        }
     }
 
     private bool IsOtherNotThere()
