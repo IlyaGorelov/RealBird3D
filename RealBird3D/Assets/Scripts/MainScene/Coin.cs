@@ -1,15 +1,19 @@
 using YG;
 using UnityEngine;
-using System;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class Coin : MonoBehaviour
 {
     [SerializeField] float speed = 0.01f;
+    [SerializeField] Transform endPoint;
 
     private void Update()
     {
         Move();
+        endPoint = GameObject.Find("EndPoint").transform;
+        if (transform.position.x < endPoint.position.x)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Move()

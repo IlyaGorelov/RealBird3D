@@ -23,6 +23,7 @@ public class ObstacleMovement : MonoBehaviour
             isMovementStart = false;
             float height = Random.Range(minHeight, maxHeight);
             transform.localPosition = new Vector3(transform.localPosition.x, height, transform.localPosition.z);
+            spawnCoin.SpawnBoost();
             spawnCoin.Spawn();
         }
         if (!GameStates.isGamePaused)

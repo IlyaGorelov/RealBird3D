@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class GameAcceleration : MonoBehaviour
 {
-    [SerializeField] float a = 0.01f;
+    [SerializeField] float a = 0.001f;
     int pastScore = 0;
     bool canPlus = true;
+    [SerializeField] Rigidbody bird;
 
     void Update()
     {
@@ -13,6 +14,7 @@ public class GameAcceleration : MonoBehaviour
             GameStates.speedA += a;
             canPlus = false;
             pastScore = GameStates.score;
+            bird.mass += GameStates.speedA;
         }
         else canPlus = true;
     }

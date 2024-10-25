@@ -12,6 +12,6 @@ public class FreezeTime
 
     public void Continue()
     {
-        Time.timeScale = pastScale;
+        Time.timeScale = 1;
     }
 }

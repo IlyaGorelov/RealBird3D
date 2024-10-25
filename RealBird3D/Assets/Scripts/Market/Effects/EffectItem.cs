@@ -3,11 +3,13 @@ using YG;
 
 public class EffectItem : MonoBehaviour
 {
-    [SerializeField] int price;
-    [SerializeField] int isBuyed;
-    [SerializeField] int isChosen;
-    [SerializeField] effectType effect;
-    [SerializeField] string id;
+    [SerializeField]protected int price;
+    [SerializeField] protected int isBuyed;
+    [SerializeField] protected int isChosen;
+    [SerializeField] modsType effect;
+    [SerializeField] protected string id;
+    [SerializeField] protected bool isEffect = true;
+    private bool doForOneTime=true;
 
     [Header("GameObjects")]
     [SerializeField] GameObject BuyButton;
@@ -15,7 +17,7 @@ public class EffectItem : MonoBehaviour
     [SerializeField] GameObject chosenImage;
     [SerializeField] GameObject chooseButton;
 
-    enum effectType
+    enum modsType
     {
         air, fire, lightning, blow, confetti
     }
@@ -23,7 +25,7 @@ public class EffectItem : MonoBehaviour
     private void OnEnable()
     {
         YandexGame.GetDataEvent += LoadEffect;
-        
+
     }
 
     private void OnDisable()
@@ -35,30 +37,46 @@ public class EffectItem : MonoBehaviour
     {
         if (YandexGame.SDKEnabled)
         {
-            LoadEffect();
-            LaunchEffectAfterLoad();
+            if (isEffect)
+            {
+                LoadEffect();
+                LaunchEffectAfterLoad();
+            }
         }
-        
+
     }
 
     private void Update()
     {
-        if (isBuyed == 1)
+        if (isBuyed == 1 && doForOneTime)
         {
+            doForOneTime = false;
             BuyButton.SetActive(false);
             BuyedImage.SetActive(true);
-            chooseButton.SetActive(true);
+            try
+            {
+                chooseButton.SetActive(true);
+            }
+            catch { }
             SaveEffect();
         }
 
-        if (isChosen == 0 && isBuyed==1)
+        if (isChosen == 0 && isBuyed == 1)
         {
             BuyedImage.SetActive(true);
-            chosenImage.SetActive(false);
+            try
+            {
+                chosenImage.SetActive(false);
+            }
+            catch { }
         }
-        else if(isChosen == 1 && isBuyed == 1)
+        else if (isChosen == 1 && isBuyed == 1)
         {
-            chosenImage.SetActive(true);
+            try
+            {
+                chosenImage.SetActive(true);
+            }
+            catch { }
             BuyedImage.SetActive(false);
         }
     }
@@ -85,26 +103,27 @@ public class EffectItem : MonoBehaviour
             isChosen = 0;
 
         }
-        SaveEffect();
+        if (isEffect)
+            SaveEffect();
     }
 
     private void SaveEffect()
     {
         switch (effect)
         {
-            case effectType.air:
+            case modsType.air:
                 YandexGame.savesData.airId = $"air-{isBuyed}-{isChosen}";
                 break;
-            case effectType.fire:
+            case modsType.fire:
                 YandexGame.savesData.fireId = $"fire-{isBuyed}-{isChosen}";
                 break;
-            case effectType.lightning:
+            case modsType.lightning:
                 YandexGame.savesData.lightningId = $"lightning-{isBuyed}-{isChosen}";
                 break;
-            case effectType.blow:
+            case modsType.blow:
                 YandexGame.savesData.blowId = $"blow-{isBuyed}-{isChosen}";
                 break;
-            case effectType.confetti:
+            case modsType.confetti:
                 YandexGame.savesData.confettiId = $"confetti-{isBuyed}-{isChosen}";
                 break;
         }
@@ -116,19 +135,19 @@ public class EffectItem : MonoBehaviour
     {
         switch (effect)
         {
-            case effectType.air:
+            case modsType.air:
                 id = YandexGame.savesData.airId;
                 break;
-            case effectType.fire:
+            case modsType.fire:
                 id = YandexGame.savesData.fireId;
                 break;
-            case effectType.lightning:
+            case modsType.lightning:
                 id = YandexGame.savesData.lightningId;
                 break;
-            case effectType.blow:
+            case modsType.blow:
                 id = YandexGame.savesData.blowId;
                 break;
-            case effectType.confetti:
+            case modsType.confetti:
                 id = YandexGame.savesData.confettiId;
                 break;
         }
@@ -136,18 +155,21 @@ public class EffectItem : MonoBehaviour
 
     private void LaunchEffectAfterLoad()
     {
-        string[] ids = id.Split('-');
-        if (ids[1] == "1")
+        if (id != "")
         {
-            isBuyed = 1;
-        }
-        if (ids[2] == "1")
-        {
-            isChosen = 1;
-        }
-        if (ids[2] == "0")
-        {
-            isChosen = 0;
+            string[] ids = id.Split('-');
+            if (ids[1] == "1")
+            {
+                isBuyed = 1;
+            }
+            if (ids[2] == "1")
+            {
+                isChosen = 1;
+            }
+            if (ids[2] == "0")
+            {
+                isChosen = 0;
+            }
         }
     }
 }

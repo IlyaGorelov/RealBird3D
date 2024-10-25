@@ -30,6 +30,15 @@ namespace YG
         public string lightningId;
         public string blowId;
 
+        public string moreMoney2Id="a-0-0";
+      public string moreMoney4Id = "a-0";
+      public string moreMoney8Id = "a-0";
+      public string moreMoney10Id = "a-0";
+      public string booster1Id = "a-0";
+       public string booster5Id = "a-0";
+       public string booster10Id = "a-0";
+       public string booster15Id = "a-0";
+
         // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны
 
 

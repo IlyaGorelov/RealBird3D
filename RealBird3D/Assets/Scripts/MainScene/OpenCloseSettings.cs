@@ -22,15 +22,22 @@ public class OpenCloseSettings : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !GameStates.isGamePaused)
         {
-            settings.SetActive(true);
-            GameStates.isGamePaused = true;
-            freezeTime.Freeze();
+            PauseGame();
         }else if(Input.GetKeyDown(KeyCode.Escape) && GameStates.isGamePaused)
         {
             settings.SetActive(false);
             GameStates.isGamePaused = false;
             freezeTime.Continue();
         }
+        if(GameStates.isGamePaused)
+            Time.timeScale = 0;
+    }
+
+    public void PauseGame()
+    {
+        settings.SetActive(true);
+        GameStates.isGamePaused = true;
+        freezeTime.Freeze();
     }
 
     public void Stop() 
