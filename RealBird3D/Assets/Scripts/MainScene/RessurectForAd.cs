@@ -7,6 +7,7 @@ using YG;
 public class RessurectForAd : MonoBehaviour
 {
     [SerializeField] GameObject LoseUI;
+    [SerializeField] GameObject Settings;
     [SerializeField] TextMeshProUGUI score;
     [SerializeField] GameObject Bird;
     FreezeTime freezeTime;
@@ -33,13 +34,14 @@ public class RessurectForAd : MonoBehaviour
 
     public void Ressurect()
     {
-        Rewarded(0);
         birdCollider = Bird.GetComponent<SphereCollider>();
         birdCollider.enabled = false;
         GameStates.score = Convert.ToInt32(score.text);
-        GameStates.isGamePaused = false;
+        GameStates.isGamePaused = true;
         EndGameAfterCollision.isLose = false;
         LoseUI.SetActive(false);
+        Settings.SetActive(true);
+        YandexGame.RewVideoShow(0);
         freezeTime.Continue();
         StartCoroutine(Wait(5));
         

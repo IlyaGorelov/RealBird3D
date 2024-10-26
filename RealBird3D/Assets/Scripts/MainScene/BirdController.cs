@@ -11,14 +11,19 @@ public class BirdController : MonoBehaviour
     [SerializeField] AudioSource[] FlySounds;
     [SerializeField] AudioSource DefoltFlySound;
     [SerializeField] ParticleSystem[] FlyEffects;
+    [SerializeField] float maxHeight;
+    [SerializeField] float minHeight;
     public ParticleSystem coinEffect;
     public ParticleSystem boostEffect;
     public AudioSource coinSound;
     public AudioSource boostSound;
 
+    private SphereCollider sphereCollider;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        sphereCollider = GetComponent<SphereCollider>();
 
     }
 
@@ -27,6 +32,16 @@ public class BirdController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) && !GameStates.isGamePaused)
         {
             Jump();
+        }
+
+        if(transform.position.y>maxHeight)
+        {
+            transform.Translate(0, -10, 0);
+            sphereCollider.enabled = true;
+        }else if(transform.position.y < minHeight)
+        {
+            transform.Translate(0,-10, 0);
+            sphereCollider.enabled = true;
         }
 
     }
