@@ -27,5 +27,6 @@ public class SaveAndGetRecord : MonoBehaviour
     private void GetRecord() 
     {
         record.text = GameStates.record.ToString();
+        YandexGame.NewLeaderboardScores("LeaderBoard", GameStates.record);
     }
 }

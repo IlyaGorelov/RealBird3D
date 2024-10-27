@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 using YG;
 
@@ -9,7 +10,7 @@ public class ActivateEffectOnMain : MonoBehaviour
 
     enum EffectsType
     {
-        air,fire,blow,confetti,lightning
+        air, fire, blow, confetti, lightning
     }
 
     private void OnEnable()
@@ -34,9 +35,12 @@ public class ActivateEffectOnMain : MonoBehaviour
     private void TryActivateEffect()
     {
         string[] ids = id.Split('-');
-        if (ids[2]=="1")
-            _effect.SetActive(true);
-     }
+        if (ids.Count() > 1)
+        {
+            if (ids[2] == "1")
+                _effect.SetActive(true);
+        }
+    }
 
     private void LoadEffectStates()
     {

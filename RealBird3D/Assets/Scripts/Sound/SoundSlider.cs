@@ -40,7 +40,7 @@ public class SoundSlider : MonoBehaviour
     private void ChangeVolumeOfNoise()
     {
         audioMixer.SetFloat("Noise",Mathf.Log10(slider.value)*20);
-        YandexGame.savesData.BGSoundLevel = Mathf.Log10(slider.value) * 20;
+        YandexGame.savesData.NoiseSoundLevel = Mathf.Log10(slider.value) * 20;
         YandexGame.SaveProgress();
     }
 }

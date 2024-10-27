@@ -20,10 +20,10 @@ public class OpenCloseSettings : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !GameStates.isGamePaused)
+        if (Input.GetKeyDown(KeyCode.Escape) && !GameStates.isGamePaused && !EndGameAfterCollision.isLose)
         {
             PauseGame();
-        }else if(Input.GetKeyDown(KeyCode.Escape) && GameStates.isGamePaused)
+        }else if(Input.GetKeyDown(KeyCode.Escape) && GameStates.isGamePaused && !EndGameAfterCollision.isLose)
         {
             settings.SetActive(false);
             GameStates.isGamePaused = false;
