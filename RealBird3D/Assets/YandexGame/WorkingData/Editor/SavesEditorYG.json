@@ -1,0 +1,31 @@
+{
+    "idSave": 97,
+    "isFirstSession": false,
+    "language": "en",
+    "promptDone": false,
+    "money": 1,
+    "newPlayerName": "Hello!",
+    "openLevels": [
+        false,
+        true,
+        false
+    ],
+    "record": 5,
+    "mainSoundLevel": 0.0,
+    "BGSoundLevel": 0.0,
+    "NoiseSoundLevel": 0.0,
+    "cash": 34,
+    "airId": "",
+    "fireId": "",
+    "confettiId": "",
+    "lightningId": "",
+    "blowId": "",
+    "moreMoney2Id": "mm2-1-1",
+    "moreMoney4Id": "mm4-1-1",
+    "moreMoney8Id": "mm8-1-1",
+    "moreMoney10Id": "mm10-1-1",
+    "booster1Id": "b1-1-1",
+    "booster5Id": "b5-1-1",
+    "booster10Id": "b10-1-1",
+    "booster15Id": "b15-1-1"
+}

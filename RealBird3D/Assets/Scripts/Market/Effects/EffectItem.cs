@@ -58,6 +58,7 @@ public class EffectItem : MonoBehaviour
                 chooseButton.SetActive(true);
             }
             catch { }
+            if(isEffect)
             SaveEffect();
         }
 
@@ -70,7 +71,7 @@ public class EffectItem : MonoBehaviour
             }
             catch { }
         }
-        else if (isChosen == 1 && isBuyed == 1)
+        else if (isChosen == 1 && isBuyed == 1 )
         {
             try
             {
@@ -83,7 +84,7 @@ public class EffectItem : MonoBehaviour
 
     public void Buy()
     {
-        if (GameStates.cash >= price)
+        if (GameStates.cash >= price && isEffect)
         {
             GameStates.cash -= price;
             isBuyed = 1;
@@ -98,7 +99,7 @@ public class EffectItem : MonoBehaviour
         {
             isChosen = 1;
         }
-        else
+        else 
         {
             isChosen = 0;
 

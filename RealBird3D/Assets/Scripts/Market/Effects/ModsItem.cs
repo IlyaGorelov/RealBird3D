@@ -28,6 +28,7 @@ public class ModsItem : EffectItem
 
     private void OnDisable()
     {
+        if(!isEffect)
         SaveMod();
         YandexGame.GetDataEvent -= LoadMod;
     }
@@ -46,7 +47,7 @@ public class ModsItem : EffectItem
 
     public new void Buy()
     {
-        if (GameStates.cash >= price)
+        if (GameStates.cash >= price && !isEffect)
         {
             GameStates.cash -= price;
             isBuyed = 1;

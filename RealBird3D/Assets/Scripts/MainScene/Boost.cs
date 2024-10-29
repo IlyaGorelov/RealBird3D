@@ -8,7 +8,6 @@ public class Boost : MonoBehaviour
 
     private void Update()
     {
-        Move();
         endPoint = GameObject.Find("EndPoint").transform;
         if (transform.position.x +500< endPoint.position.x)
         {
@@ -16,13 +15,7 @@ public class Boost : MonoBehaviour
         }
     }
 
-    private void Move()
-    {
-        if (!GameStates.isGamePaused)
-        {
-            transform.Translate(-speed - GameStates.speedA, 0, 0);
-        }
-    }
+    
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -43,12 +36,17 @@ public class Boost : MonoBehaviour
 
     IEnumerator Accelerate()
     {
-        GameStates.speedA += 0.03f;
+        GameStates.speedA += 0.5f;
         yield return new WaitForSeconds(10);
         print("a is gone");
-        if(GameStates.speedA>= 0.03f)
-        GameStates.speedA -= 0.03f;
+        if(GameStates.speedA>= 0.5f)
+        GameStates.speedA -= 0.5f;
         else GameStates.speedA = 0;
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        ModsBehaviour.mods.Remove(gameObject);
     }
 }

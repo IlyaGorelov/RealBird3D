@@ -1,4 +1,5 @@
-using System.Collections;
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnCoinFrontOfObstacle : MonoBehaviour
@@ -10,7 +11,8 @@ public class SpawnCoinFrontOfObstacle : MonoBehaviour
     [SerializeField] GameObject boost;
     [SerializeField] Transform bird;
     [SerializeField] GetModsValues modsValues;
- 
+
+   
 
     public void Spawn()
     {
@@ -18,7 +20,9 @@ public class SpawnCoinFrontOfObstacle : MonoBehaviour
         {
         float randHeight = Random.Range(minHeight, maxHeight);
         Vector3 spawn = new Vector3(transform.position.x - distance, randHeight, bird.transform.position.z);
-        Instantiate(coin, spawn, Quaternion.identity);
+           var coinIns = Instantiate(coin, spawn, Quaternion.identity);
+            coinIns.SetActive(false);
+       ModsBehaviour.mods.Add(coinIns);
 
         }
     }
@@ -29,8 +33,9 @@ public class SpawnCoinFrontOfObstacle : MonoBehaviour
         {
             float randHeight = Random.Range(minHeight, maxHeight);
             Vector3 spawn = new Vector3(transform.position.x - distance, randHeight, bird.transform.position.z);
-
-            Instantiate(boost, spawn, Quaternion.identity);
+            var boostIns = Instantiate(boost, spawn, Quaternion.identity);
+            boostIns.SetActive(false);
+            ModsBehaviour.mods.Add(boostIns);
 
         }
     }

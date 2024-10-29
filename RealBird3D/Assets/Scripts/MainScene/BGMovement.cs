@@ -11,6 +11,6 @@ public class BGMovement : MonoBehaviour
 
     private void Move()
     {
-        transform.Translate(-speed-GameStates.speedA, 0, 0);
+        transform.Translate((-speed-GameStates.speedA)*Time.deltaTime, 0, 0);
     }
 }

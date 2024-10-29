@@ -17,6 +17,8 @@ public class BirdController : MonoBehaviour
     public ParticleSystem boostEffect;
     public AudioSource coinSound;
     public AudioSource boostSound;
+    public static bool isLower = false;
+    public static bool isUpper = false;
 
     private SphereCollider sphereCollider;
 
@@ -34,23 +36,25 @@ public class BirdController : MonoBehaviour
             Jump();
         }
 
-        if(transform.position.y>maxHeight)
+        if (transform.position.y>maxHeight)
         {
-            transform.Translate(0, -10, 0);
-            sphereCollider.enabled = true;
+            isUpper = true;
+            
         }else if(transform.position.y < minHeight)
         {
-            transform.Translate(0,-10, 0);
-            sphereCollider.enabled = true;
+            isLower = true;
         }
 
     }
 
     private void Jump()
     {
+        if (!GameStates.isGamePaused)
+        {
         PlayEffect();
-        rb.AddForce((jumpForce+GameStates.speedA) * Vector3.up, ForceMode.Impulse);
+        rb.AddForce(jumpForce * Vector3.up, ForceMode.Impulse);
         animator.SetTrigger("Jump");
+        }
     }
 
     private void PlayEffect()

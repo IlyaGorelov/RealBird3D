@@ -5,6 +5,8 @@ public class OpenCloseSettings : MonoBehaviour
 {
     [SerializeField] GameObject settings;
     [SerializeField] FreezeTime freezeTime;
+    [SerializeField] KeyCode keyCode1;
+    [SerializeField] KeyCode keyCode2;
 
     private void OnEnable()
     {
@@ -20,10 +22,10 @@ public class OpenCloseSettings : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !GameStates.isGamePaused && !EndGameAfterCollision.isLose)
+        if ((Input.GetKeyDown(keyCode1)|| Input.GetKeyDown(keyCode2)) && !GameStates.isGamePaused && !EndGameAfterCollision.isLose)
         {
             PauseGame();
-        }else if(Input.GetKeyDown(KeyCode.Escape) && GameStates.isGamePaused && !EndGameAfterCollision.isLose)
+        }else if((Input.GetKeyDown(keyCode1) || Input.GetKeyDown(keyCode2)) && GameStates.isGamePaused && !EndGameAfterCollision.isLose)
         {
             settings.SetActive(false);
             GameStates.isGamePaused = false;

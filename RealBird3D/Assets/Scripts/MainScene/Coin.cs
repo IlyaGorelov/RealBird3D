@@ -8,7 +8,6 @@ public class Coin : MonoBehaviour
 
     private void Update()
     {
-        Move();
         endPoint = GameObject.Find("EndPoint").transform;
         if (transform.position.x < endPoint.position.x)
         {
@@ -16,13 +15,7 @@ public class Coin : MonoBehaviour
         }
     }
 
-    private void Move()
-    {
-        if (!GameStates.isGamePaused)
-        {
-            transform.Translate(-speed- GameStates.speedA, 0, 0);
-        }
-    }
+    
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -44,5 +37,10 @@ public class Coin : MonoBehaviour
     {
         YandexGame.savesData.cash = GameStates.cash;
         YandexGame.SaveProgress();
+    }
+
+    private void OnDestroy()
+    {
+        ModsBehaviour.mods.Remove(gameObject);
     }
 }

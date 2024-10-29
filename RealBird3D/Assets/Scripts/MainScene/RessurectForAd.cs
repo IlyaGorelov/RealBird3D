@@ -24,6 +24,31 @@ public class RessurectForAd : MonoBehaviour
 
    public void Rewarded(int id)
     {
+        if (id == 0)
+        {
+            birdCollider = Bird.GetComponent<SphereCollider>();
+            birdCollider.enabled = false;
+            EndGameAfterCollision.canLoseOneTime = true;
+            GameStates.score = Convert.ToInt32(score.text);
+            GameStates.isGamePaused = true;
+            EndGameAfterCollision.isLose = false;
+            LoseUI.SetActive(false);
+            Settings.SetActive(true);
+            freezeTime.Continue();
+            StartCoroutine(Wait(5));
+            if (BirdController.isLower)
+            {
+                Bird.transform.Translate(0, 10, 0);
+                BirdController.isLower = false;
+            }
+            else if(BirdController.isUpper)
+            {
+                Bird.transform.Translate(0, -10, 0);
+                BirdController.isUpper = false;
+            }
+
+
+        }
     }
 
 
@@ -34,17 +59,8 @@ public class RessurectForAd : MonoBehaviour
 
     public void Ressurect()
     {
-        birdCollider = Bird.GetComponent<SphereCollider>();
-        birdCollider.enabled = false;
-        GameStates.score = Convert.ToInt32(score.text);
-        GameStates.isGamePaused = true;
-        EndGameAfterCollision.isLose = false;
-        LoseUI.SetActive(false);
-        Settings.SetActive(true);
         YandexGame.RewVideoShow(0);
-        freezeTime.Continue();
-        StartCoroutine(Wait(5));
-        
+     
     }
 
     IEnumerator Wait(float t)

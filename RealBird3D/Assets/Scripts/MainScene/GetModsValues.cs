@@ -52,7 +52,7 @@ public class GetModsValues : MonoBehaviour
     private void GetLoadBoosterMod()
     {
         string boostModstr = YandexGame.savesData.booster15Id;
-        boostMod = 10;
+        boostMod = 15;
         if (boostModstr.Split('-')[1] == "0")
         {
             boostModstr = YandexGame.savesData.booster10Id;

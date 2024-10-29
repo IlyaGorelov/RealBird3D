@@ -39,7 +39,7 @@ public class ObstacleMovement : MonoBehaviour
         if (IsOtherNotThere() && !GameStates.isGamePaused)
         {
             
-            transform.Translate(-speed - GameStates.speedA, 0, 0);
+            transform.Translate((-speed - GameStates.speedA) * Time.deltaTime, 0, 0);
         }
     }
 
@@ -48,7 +48,7 @@ public class ObstacleMovement : MonoBehaviour
         if (IsOtherNotThere() && !GameStates.isGamePaused)
         {
         
-            transform.Translate(0, 0, -speed - GameStates.speedA);
+            transform.Translate(0, 0, (-speed - GameStates.speedA)*Time.deltaTime);
         }
     }
 
